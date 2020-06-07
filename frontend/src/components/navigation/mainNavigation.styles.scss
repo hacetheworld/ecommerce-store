@@ -1,0 +1,17 @@
+.header {
+  height: 8rem;
+  display: flex;
+
+  &__logo {
+  }
+  &__nav {
+    &__cart {
+      height: 3rem;
+      width: 3rem;
+      &--icon {
+        height: 3rem;
+        width: 3rem;
+      }
+    }
+  }
+}
