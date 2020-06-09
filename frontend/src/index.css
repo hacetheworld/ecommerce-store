@@ -10,6 +10,7 @@ body {
   font-family: "Open Sans", sans-serif;
   font-size: 1.6rem;
   font-weight: 400;
+  padding: 1rem;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

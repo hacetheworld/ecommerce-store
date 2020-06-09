@@ -4,15 +4,20 @@ import { Switch, Route } from "react-router-dom";
 import MainNavigation from "./components/navigation/mainNavigation.component";
 import Footer from "./components/footer/footer.component";
 import HomePage from "./pages/homePage/homePage";
+import ShopPage from "./pages/shopPage/shopPage";
 function App() {
   return (
-    <React.Fragment>
+    <div className="App">
       <MainNavigation />
-      <Switch>
-        <Route component={HomePage} exact />
-      </Switch>
+      <div className="main">
+        <Switch>
+          <Route path="/" component={HomePage} exact />
+          <Route path="/shop" component={ShopPage} />
+        </Switch>
+      </div>
+
       <Footer />
-    </React.Fragment>
+    </div>
   );
 }
 

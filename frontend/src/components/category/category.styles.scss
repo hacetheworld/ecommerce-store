@@ -1,0 +1,22 @@
+.category {
+  display: flex;
+  flex-direction: column;
+  &__item {
+    display: flex;
+    flex-direction: column;
+
+    &--link {
+      text-decoration: none;
+      font-size: 1.8rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: #000;
+      &:hover {
+        background-color: rgb(161, 25, 25);
+      }
+      &:active {
+        background-color: rgb(161, 25, 25);
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+.directory-item {
+  min-width: 30rem;
+  height: 240px;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  //   flex-direction: column;
+  justify-content: center;
+  border: 1px solid black;
+  position: relative;
+  margin: 0 7.5px 15px;
+  &--image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-position: center;
+  }
+  &--title {
+    font-size: 1.8rem;
+    font-weight: 400;
+    position: absolute;
+    background: #000;
+    padding: 1rem 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    &:hover {
+      background-color: rgb(65, 61, 61);
+    }
+  }
+}

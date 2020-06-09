@@ -1,8 +1,8 @@
 import React from "react";
 import "./mainNavigation.styles.scss";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
-import { ReactComponent as CARTICON } from "../../assets/shopping-bag.svg";
 import { Link } from "react-router-dom";
+import CartIcon from "../cart-icon/cart-icon.component";
 export default function MainNavigation() {
   return (
     <nav className="header">
@@ -26,10 +26,7 @@ export default function MainNavigation() {
             SIGN/SIGNUP
           </Link>
         </li>
-        <div className="header__nav--cart">
-          <span className="header_cart--count">7</span>
-          <CARTICON className="header_cart--icon" />
-        </div>
+        <CartIcon />
       </ul>
     </nav>
   );
