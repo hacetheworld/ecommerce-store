@@ -5,6 +5,8 @@ import MainNavigation from "./components/navigation/mainNavigation.component";
 import Footer from "./components/footer/footer.component";
 import HomePage from "./pages/homePage/homePage";
 import ShopPage from "./pages/shopPage/shopPage";
+import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
+import CheckoutPage from "./pages/checkout/checkout.component";
 function App() {
   return (
     <div className="App">
@@ -13,6 +15,8 @@ function App() {
         <Switch>
           <Route path="/" component={HomePage} exact />
           <Route path="/shop" component={ShopPage} />
+          <Route path="/checkout" component={CheckoutPage} />
+          <Route path="/signin" component={SignInAndSignUpPage} />
         </Switch>
       </div>
 

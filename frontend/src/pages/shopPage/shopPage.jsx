@@ -8,7 +8,15 @@ export default function ShopPage(props) {
   return (
     <div className="shopPage">
       <CategoryItem props={props} />
+      {/* <div>
+        {props.match.isExact ? (
+          <h1>Select any category</h1>
+        ) : (
+          <React.Fragment></React.Fragment>
+        )}
+      </div> */}
       <Switch>
+        {/* <Route exact path={`${props.match.path}/`} component={ShopItem} /> */}
         <Route exact path={`${props.match.path}/:catId`} component={ShopItem} />
       </Switch>
     </div>
