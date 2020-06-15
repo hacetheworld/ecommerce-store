@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import "./sign-in.styles.scss";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
+import { connect } from "react-redux";
+import { loginUser } from "../../redux/user/user.actions";
 
-export default class SignIn extends Component {
+class SignIn extends Component {
   constructor(props) {
     super(props);
 
@@ -19,6 +21,9 @@ export default class SignIn extends Component {
   };
 
   handleSubmit = async (event) => {
+    console.log(this.state);
+
+    this.props.loginUser(this.state);
     event.preventDefault();
   };
   render() {
@@ -59,3 +64,5 @@ export default class SignIn extends Component {
     );
   }
 }
+
+export default connect(null, { loginUser })(SignIn);

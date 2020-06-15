@@ -54,6 +54,8 @@ router.post("/login", async (req, res) => {
     return res.status(400).send("email or password wrong");
   }
 
-  res.send("Logged in");
+  // create token
+  const token = jwt.sign({ _id: isUserExist._id }, process.env.SECRET_KEY);
+  res.header("auth-token", token).send({ token, user: isUserExist });
 });
 module.exports = router;
