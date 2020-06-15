@@ -2,6 +2,8 @@ import React from "react";
 import "./checkout.styles.scss";
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 // import StripeCheckoutButton from "../../components/stripe-button/stripe-button.component";
+import { connect } from "react-redux";
+import { selectCartTotal } from "../../redux/cart/cart.selectors";
 
 const CheckoutPage = ({ cartItems, total }) => (
   <div className="checkout-page">
@@ -28,7 +30,7 @@ const CheckoutPage = ({ cartItems, total }) => (
     </div>
     {cartItems &&
       cartItems.map((cartItem) => (
-        <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+        <CheckoutItem key={cartItem._id} cartItem={cartItem} />
       ))}
 
     <div className="total">
@@ -39,4 +41,9 @@ const CheckoutPage = ({ cartItems, total }) => (
   </div>
 );
 
-export default CheckoutPage;
+const mapStateToProps = (state) => ({
+  cartItems: state.cart.cartItems,
+  total: selectCartTotal(state.cart.cartItems),
+});
+
+export default connect(mapStateToProps)(CheckoutPage);
