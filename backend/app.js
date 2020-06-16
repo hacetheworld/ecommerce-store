@@ -4,6 +4,7 @@ const app = express();
 require("./db");
 const productRoute = require("./routes/product");
 const authRoute = require("./routes/auth");
+const path = require("path");
 /************ MIDDLEVARES *************/
 
 // Body parser middleware
@@ -22,12 +23,14 @@ app.use((req, res, next) => {
 app.use("/api/v1/", productRoute);
 app.use("/api/v1/user", authRoute);
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("../frontend//build"));
+if (process.env.NODE_ENV !== "production") {
+  app.use(express.static("../frontend/build"));
 
   app.get("*", (req, res) => {
+    console.log(__dirname);
+
     res.sendFile(
-      path.resolve(__dirname, "../", "frontend", "build", "index.html")
+      path.join(__dirname, "../", "frontend", "build", "index.html")
     );
   });
 }
