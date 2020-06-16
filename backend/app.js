@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 app.use("/api/v1/", productRoute);
 app.use("/api/v1/user", authRoute);
 
-if (process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV === "production") {
   app.use(express.static("../frontend/build"));
 
   app.get("*", (req, res) => {
