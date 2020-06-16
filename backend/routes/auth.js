@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const { registerValidation, loginValidation } = require("../validation");
 router.post("/register", async (req, res) => {
   const { error } = registerValidation(req.body);
+  // console.log(req.body);
 
   if (error) {
     return res.status(400).send(error.details[0].message);
@@ -36,16 +37,16 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { error } = loginValidation(req.body);
-
   if (error) {
     return res.status(400).send(error.details[0].message);
   }
   const isUserExist = await User.findOne({ email: req.body.email });
+
   if (!isUserExist) {
-    return res.status(400).send("user not exist");
+    return res.status(400).send({ msg: "user does not exist" });
   }
 
-  //password is corect
+  //password is correct
   const validPass = await bcrypt.compare(
     req.body.password,
     isUserExist.password

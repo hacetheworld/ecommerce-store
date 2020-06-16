@@ -4,7 +4,7 @@ import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 import { connect } from "react-redux";
 import { loginUser } from "../../redux/user/user.actions";
-
+import { withRouter } from "react-router-dom";
 class SignIn extends Component {
   constructor(props) {
     super(props);
@@ -21,9 +21,8 @@ class SignIn extends Component {
   };
 
   handleSubmit = async (event) => {
-    console.log(this.state);
+    this.props.loginUser(this.state, this.props.history);
 
-    this.props.loginUser(this.state);
     event.preventDefault();
   };
   render() {
@@ -65,4 +64,4 @@ class SignIn extends Component {
   }
 }
 
-export default connect(null, { loginUser })(SignIn);
+export default connect(null, { loginUser })(withRouter(SignIn));

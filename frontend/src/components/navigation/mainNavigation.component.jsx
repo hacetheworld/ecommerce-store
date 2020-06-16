@@ -4,7 +4,7 @@ import { ReactComponent as Logo } from "../../assets/crown.svg";
 import { Link } from "react-router-dom";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 import { connect } from "react-redux";
-// import {}
+import { logoutUser } from "../../redux/user/user.actions";
 import CartIcon from "../cart-icon/cart-icon.component";
 class MainNavigation extends Component {
   constructor() {
@@ -18,8 +18,6 @@ class MainNavigation extends Component {
   };
   render() {
     const { currentUser } = this.props;
-    console.log(currentUser);
-
     return (
       <nav className="header">
         <Link className="header__logo" to="/">
@@ -37,11 +35,18 @@ class MainNavigation extends Component {
               CONTACT
             </Link>
           </li> */}
-          {!currentUser && (
+          {!currentUser ? (
             <li className="header__nav--item">
               <Link className="header__nav--item-link" to="/signin">
                 SIGN/SIGNUP
               </Link>
+            </li>
+          ) : (
+            <li
+              className="header__nav--item"
+              onClick={() => this.props.logoutUser()}
+            >
+              LOGOUT
             </li>
           )}
 
@@ -58,4 +63,4 @@ class MainNavigation extends Component {
 const mapStateToProps = (state) => ({
   currentUser: state.user.currentUser,
 });
-export default connect(mapStateToProps)(MainNavigation);
+export default connect(mapStateToProps, { logoutUser })(MainNavigation);

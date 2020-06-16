@@ -5,13 +5,13 @@ import axios from "axios";
 
 export const registerUser = (user) => (dispatch) => {
   axios
-    .post("/api/v1/user/register", user)
+    .post("api/v1/user/register", user)
     .then((res) => console.log(res))
     .catch((err) => console.log(err));
 };
 
 // Login - Get User Token
-export const loginUser = (user) => (dispatch) => {
+export const loginUser = (user, history) => (dispatch) => {
   axios
     .post(`/api/v1/user/login`, user)
     .then((res) => {
@@ -27,6 +27,7 @@ export const loginUser = (user) => (dispatch) => {
 
       // set current user in redux store
       dispatch(setCurrentUser(user));
+      history.push("/shop");
     })
     .catch((err) => console.log(err));
 };
@@ -44,5 +45,5 @@ export const setCurrentUser = (user) => {
 
 export const logoutUser = () => (dispatch) => {
   localStorage.removeItem("jwtToken");
-  dispatch(setCurrentUser({}));
+  dispatch(setCurrentUser(null));
 };

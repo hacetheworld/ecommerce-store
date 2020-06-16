@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import "./sign-up.styles.scss";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
-
-export default class SignUp extends Component {
+import { connect } from "react-redux";
+import { registerUser } from "../../redux/user/user.actions";
+class SignUp extends Component {
   constructor(props) {
     super(props);
 
@@ -28,6 +29,12 @@ export default class SignUp extends Component {
       alert("Passord  and confirm Password does Not match");
       return;
     }
+    const newUser = {
+      name: displayName,
+      email: email,
+      password: password,
+    };
+    this.props.registerUser(newUser);
   };
   render() {
     return (
@@ -78,3 +85,5 @@ export default class SignUp extends Component {
     );
   }
 }
+
+export default connect(null, { registerUser })(SignUp);

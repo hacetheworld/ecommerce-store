@@ -1,6 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
 import "./shop-items.styles.scss";
-import SHOP_DATA from "./shop.data.js";
 import ShopItemCard from "../shop-item-card/shopItemCard.component";
 import { connect } from "react-redux";
 const ShopItem = ({ product }) => {

@@ -8,7 +8,7 @@ const Category = require("../model/CatModal");
 // Get all products
 router.get("/product", (req, res) => {
   Product.find()
-    .then((products) => res.json(products))
+    .then((products) => res.json([]))
     .catch((err) =>
       res.status(404).json({
         nopostsfound: "No product found",
@@ -19,7 +19,7 @@ router.get("/product", (req, res) => {
 // Get all  category name
 router.get("/category", (req, res) => {
   Category.find()
-    .then((category) => res.json(category))
+    .then((category) => res.json([]))
     .catch((err) =>
       res.status(404).json({
         nocatsfound: "No Category found",
@@ -29,8 +29,6 @@ router.get("/category", (req, res) => {
 
 // Get all product by specific category name
 router.get("/product/:cat_name", (req, res) => {
-  // console.log();
-
   Product.find({ routeName: req.params["cat_name"] })
     .then((product) => res.json(product))
     .catch((err) =>

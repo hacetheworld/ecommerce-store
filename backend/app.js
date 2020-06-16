@@ -15,19 +15,19 @@ app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Header", "*");
-  if (req.method === "OPTIONS") {
-    req.header("Access-Control-Allow-Methods", "POST,PUT,PATCH,DELETE,GET");
-    return res.status(200).json({});
-  }
+
   next();
 });
 /************ ROUTES *************/
 app.use("/api/v1/", productRoute);
 app.use("/api/v1/user", authRoute);
 
-app.get("/", (req, res) => {
-  res.send("We are on home");
-});
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
 
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 // listen to the port
 app.listen(PORT);
