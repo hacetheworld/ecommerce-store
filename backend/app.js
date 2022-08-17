@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 
   next();
 });
-/************ ROUTES *************/
+/************* ROUTES **************/
 app.use("/api/v1/", productRoute);
 app.use("/api/v1/user", authRoute);
 
