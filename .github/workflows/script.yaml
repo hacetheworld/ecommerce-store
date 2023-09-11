@@ -1,0 +1,54 @@
+name: E-Commerce Node.js CI/CD
+
+on:
+  push:
+    branches:
+      - main  # Adjust the branch name as needed
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14  # Adjust the Node.js version as needed
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Tests
+        run: npm test
+
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: windows-latest
+    needs: build
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Deploy to Staging Server
+        run: |
+          # Add your deployment script or commands for staging
+          echo "Deploying to staging..."
+
+  deploy-production:
+    name: Deploy to Production
+    runs-on: windows-latest
+    needs: build
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Deploy to Production Server
+        run: |
+          # Add your deployment script or commands for production
+          echo "Deploying to production..."
